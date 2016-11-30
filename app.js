@@ -7,7 +7,7 @@
     messagingSenderId: "596479524434"
   };
   firebase.initializeApp(config);
-
+  
 var database = firebase.database();
 
 $("#addTrain").on("click", function(){
