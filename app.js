@@ -7,28 +7,38 @@
     messagingSenderId: "596479524434"
   };
   firebase.initializeApp(config);
-//Create a variable to reference the DB
+
 var database = firebase.database();
 
 $("#addTrain").on("click", function(){
-	//Initial values
+	
 	var tname = $("#trainName").val().trim();
 	var destination = $("#trainDestination").val().trim();
 	var firstTrainTime = $("#firstTrainTime").val().trim();
 	var frequency = $("#frequency").val().trim();
+
+	var newTrain = {
+		name: tname,
+		destination: destination,
+		firstTrain: firstTrainTime,
+		frequency: frequency
+	}
+
+	trainData.ref().push(newTrain);
 
 	console.log(tname);
 	console.log(destination);
 	console.log(firstTrainTime);
 	console.log(frequency);
 
-	dataRef.ref().push({
-		name : tname,
-		role : destination,
-		start : firstTrainTime,
-		rate : frequency
-	});
+	alert("Train added");
+	
+	$("#trainName").val("");
+	$("#trainDestination").val("");
+	$("#firstTrainTime").val("");
+	$("#frequency").val("");
 
+	// Determine when the next train arrives.
 	return false;
 });
 
